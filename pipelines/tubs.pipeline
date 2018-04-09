@@ -1,1 +1,15 @@
-#test
+pipeline {
+    agent any
+    stages {
+        stage('Setup') {
+            steps {
+                echo 'Setting up.'
+            }
+        }
+        stage('Load Tubs') {
+            steps {
+                echo 'Loading Tubs.'
+            }
+        }
+    }
+}
