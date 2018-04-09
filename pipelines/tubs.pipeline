@@ -3,9 +3,14 @@ pipeline {
 
   agent any
   
+  parameters {
+    string(defaultValue: 'tspeckhart', description: '', name: 'USER_MAC')
+  }
+  
   environment {
     APP_NAME = 'my-app3'
     IP_CAR = '192.168.1.46'
+    IP_MAC = '192.168.1.78'
   }
 
   stages {
@@ -15,7 +20,8 @@ pipeline {
               withCredentials(bindings: [sshUserPrivateKey(credentialsId: '67c58dc5-9198-425a-82ff-a60ae3fcb044', keyFileVariable: 'SSH_KEY_FOR_JENKINS')]) {
                       echo "jenkins key file ${SSH_KEY_FOR_JENKINS}"
                       sh "ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no pi@${env.IP_CAR} uptime"
-                      sh "scp -r -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no pi@${env.IP_CAR}:~/d2 ./"
+                      //sh "scp -r -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no pi@${env.IP_CAR}:~/d2 ./"
+                      sh "ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${params.USER_MAC}@{env.IP_MAC} uptime"
               }
           }
       }
