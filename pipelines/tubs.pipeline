@@ -10,10 +10,6 @@ pipeline {
     }
   }
 
-#  parameters {
-#    credentials credentialType: 'com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey', defaultValue: '67c58dc5-9198-425a-82ff-a60ae3fcb044', description: '', name: 'jenkins-key', required: false
-#  }
-
   stages {
       stage('Setup') {
           steps {
