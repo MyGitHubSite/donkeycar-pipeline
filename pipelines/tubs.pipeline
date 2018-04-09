@@ -27,7 +27,7 @@ pipeline {
       }
       stage('Load Tubs') {
           steps {
-              echo 'Loading Tubs.'
+              echo 'Loading Tubs .'
           }
       }
   }
