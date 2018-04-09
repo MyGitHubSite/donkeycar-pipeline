@@ -5,16 +5,15 @@ pipeline {
   
   environment {
     APP_NAME = 'my-app'
-    withCredentials(bindings: [sshUserPrivateKey(credentialsId: '67c58dc5-9198-425a-82ff-a60ae3fcb044', keyFileVariable: 'SSH_KEY_FOR_JENKINS')]) {
-            echo jenkins key file ${SSH_KEY_FOR_JENKINS}
-    }
   }
 
   stages {
       stage('Setup') {
           steps {
               echo 'Setting up.'
-              echo ${SSH_KEY_FOR_JENKINS}
+              withCredentials(bindings: [sshUserPrivateKey(credentialsId: '67c58dc5-9198-425a-82ff-a60ae3fcb044', keyFileVariable: 'SSH_KEY_FOR_JENKINS')]) {
+                      echo "jenkins key file ${SSH_KEY_FOR_JENKINS}"
+              }
           }
       }
       stage('Load Tubs') {
