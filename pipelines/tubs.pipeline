@@ -5,14 +5,16 @@ pipeline {
   
   environment {
     APP_NAME = 'my-app'
+    IP_CAR = '192.168.1.46'
   }
 
   stages {
       stage('Setup') {
           steps {
-              echo 'Setting up.'
+              echo 'Setting up. Build ${env.BUILD_NUMBER}'
               withCredentials(bindings: [sshUserPrivateKey(credentialsId: '67c58dc5-9198-425a-82ff-a60ae3fcb044', keyFileVariable: 'SSH_KEY_FOR_JENKINS')]) {
                       echo "jenkins key file ${SSH_KEY_FOR_JENKINS}"
+                      sh "ssh -i ${SSH_KEY_FOR_JENKINS} pi@${env.IP_CAR} 'ls -ltra'"
               }
           }
       }
