@@ -4,7 +4,7 @@ pipeline {
   agent any
   
   environment {
-    APP_NAME = 'my-app2'
+    APP_NAME = 'my-app3'
     IP_CAR = '192.168.1.46'
   }
 
