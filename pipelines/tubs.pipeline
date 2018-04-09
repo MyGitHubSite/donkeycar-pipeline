@@ -21,7 +21,7 @@ pipeline {
                       echo "jenkins key file ${SSH_KEY_FOR_JENKINS}"
                       sh "ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no pi@${env.IP_CAR} uptime"
                       //sh "scp -r -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no pi@${env.IP_CAR}:~/d2 ./"
-                      sh "ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${params.USER_MAC}@{env.IP_MAC} uptime"
+                      sh "ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${params.USER_MAC}@${env.IP_MAC} uptime"
               }
           }
       }
