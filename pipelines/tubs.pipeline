@@ -5,17 +5,20 @@ pipeline {
   
   environment {
     APP_NAME = 'my-app'
+    withCredentials(bindings: [sshUserPrivateKey(credentialsId: '67c58dc5-9198-425a-82ff-a60ae3fcb044', keyFileVariable: 'SSH_KEY_FOR_JENKINS')]) {
+            echo jenkins key file ${SSH_KEY_FOR_JENKINS}
+    }
   }
 
-  parameters {
-    credentials credentialType: 'com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey', defaultValue: '67c58dc5-9198-425a-82ff-a60ae3fcb044', description: '', name: 'jenkins-key', required: false
-  }
+#  parameters {
+#    credentials credentialType: 'com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey', defaultValue: '67c58dc5-9198-425a-82ff-a60ae3fcb044', description: '', name: 'jenkins-key', required: false
+#  }
 
   stages {
       stage('Setup') {
           steps {
               echo 'Setting up.'
-              echo $jenkins-key
+              echo ${SSH_KEY_FOR_JENKINS}
           }
       }
       stage('Load Tubs') {
