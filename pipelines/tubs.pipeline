@@ -32,7 +32,7 @@ ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${params.USER_MAC}@${en
               }
           }
       }
-      stage('Load Tubs') {
+      stage('Load Tubs stage \u273F Verify 4') {
           steps {
               echo 'Loading Tubs .'
           }
