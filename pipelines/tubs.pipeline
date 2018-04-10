@@ -30,6 +30,7 @@ ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${params.USER_MAC}@${en
                       '''
  */                    
               }
+              sh "echo \u2705 Transfer Complete"
           }
       }
       stage('\u2668 Load Tubs stage \u273F Verify 4') {
