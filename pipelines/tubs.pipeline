@@ -24,9 +24,9 @@ pipeline {
                       ssh "scp -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${WORKSPACE}/pipelines/transfer-tubs.sh ${params.USER_MAC}@${env.IP_MAC}:/Users/${params.USER_MAC}/jenkins/"
                       sh "ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${params.USER_MAC}@${env.IP_MAC} /Users/${params.USER_MAC}/jenkins/transfer-tubs.sh"
                       
-                      sh """
+                      sh '''
 ssh -i ${SSH_KEY_FOR_JENKINS} -oStrictHostKeyChecking=no ${params.USER_MAC}@${env.IP_MAC} 'rsync -avz -e "ssh -i ~/jenkins/jenkins -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" pi@${env.IP_CAR}:~/d2/ ~/d2/'
-                      """
+                      '''
                       
               }
           }
